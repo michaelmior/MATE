@@ -19,6 +19,7 @@ class BloomFilter(object):
     number_of_ones : int
         Number of hash functions to use.
     """
+
     def __init__(self, items_count: int, size: int, number_of_ones: int = -1):
         # False posible probability in decimal
         self.fp_prob = 0.05
@@ -56,7 +57,6 @@ class BloomFilter(object):
             digests.append(digest)
             # set the bit True in bit_array
             self.bit_array[digest] = True
-
 
     def check(self, item: Hashable) -> bool:
         """Check for existence of one item in the filter.
@@ -124,5 +124,3 @@ class BloomFilter(object):
         """
         k = (m / n) * math.log(2)
         return int(k)
-
-
