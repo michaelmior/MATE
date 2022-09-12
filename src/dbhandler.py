@@ -28,7 +28,7 @@ class DBHandler:
         self.cur = connection.cursor()
         self.main_table = main_table_name
 
-    def get_concatinated_posting_list(self,
+    def get_concatenated_posting_list(self,
                                       dataset_name: str,
                                       query_column_name: str,
                                       value_list: pd.Series,

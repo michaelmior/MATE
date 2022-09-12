@@ -443,7 +443,7 @@ class MATETableExtraction:
         top_joinable_tables = []
         heapify(top_joinable_tables)
 
-        table_row = self.dbh.get_concatinated_posting_list(self.dataset_name, self.query_columns[0],
+        table_row = self.dbh.get_concatenated_posting_list(self.dataset_name, self.query_columns[0],
                                                                self.input_data[self.query_columns[0]])
         table_dictionary = {}
         for i in table_row:
@@ -464,20 +464,20 @@ class MATETableExtraction:
         pruned = False
         for tableid in tqdm(sorted(table_dictionary, key=lambda k: len(table_dictionary[k]), reverse=True)):
             set_of_rowids = set()
-            hitting_posting_list_concatinated = table_dictionary[tableid]
+            hitting_posting_list_concatenated = table_dictionary[tableid]
             if active_pruning and len(top_joinable_tables) >= self.top_k and top_joinable_tables[0][0] >= len(
-                    hitting_posting_list_concatinated):
+                    hitting_posting_list_concatenated):
                 pruned = True
             if active_pruning and (
-                    (self.is_min_join_ratio_absolute and len(hitting_posting_list_concatinated) < self.min_join_ratio)
-                    or (not self.is_min_join_ratio_absolute and len(hitting_posting_list_concatinated) < round(
+                    (self.is_min_join_ratio_absolute and len(hitting_posting_list_concatenated) < self.min_join_ratio)
+                    or (not self.is_min_join_ratio_absolute and len(hitting_posting_list_concatenated) < round(
                     self.min_join_ratio * self.input_size))):
                 pruned = True
 
             already_checked_hits = 0
-            for hit in sorted(hitting_posting_list_concatinated):
+            for hit in sorted(hitting_posting_list_concatenated):
                 if active_pruning and len(top_joinable_tables) >= self.top_k and (
-                        (len(hitting_posting_list_concatinated) - already_checked_hits + len(set_of_rowids)) <
+                        (len(hitting_posting_list_concatenated) - already_checked_hits + len(set_of_rowids)) <
                         top_joinable_tables[0][0]):
                     break
                 tablerowid = hit.split(';')[0]
@@ -567,11 +567,11 @@ class MATETableExtraction:
             gd[key] = np.array(g.get_group(key))
 
         fetching_start_1 = time.time()
-        table_row_1 = self.dbh.get_concatinated_posting_list(self.dataset_name, self.query_columns[0], self.input_data[self.query_columns[0]])
+        table_row_1 = self.dbh.get_concatenated_posting_list(self.dataset_name, self.query_columns[0], self.input_data[self.query_columns[0]])
         fetching_time_1 = time.time() - fetching_start_1
 
         fetching_start_2 = time.time()
-        table_row_2 = self.dbh.get_concatinated_posting_list(self.dataset_name, self.query_columns[1], self.input_data[self.query_columns[1]])
+        table_row_2 = self.dbh.get_concatenated_posting_list(self.dataset_name, self.query_columns[1], self.input_data[self.query_columns[1]])
         fetching_time_2 = time.time() - fetching_start_2
 
         evaluation_time_start = time.time()
@@ -684,7 +684,7 @@ class MATETableExtraction:
         top_joinable_tables = []
         heapify(top_joinable_tables)
 
-        table_row = self.dbh.get_concatinated_posting_list(self.dataset_name, self.query_columns[0],
+        table_row = self.dbh.get_concatenated_posting_list(self.dataset_name, self.query_columns[0],
                                                                self.input_data[self.query_columns[0]])
         table_dictionary = {}
         for i in table_row:
@@ -705,20 +705,20 @@ class MATETableExtraction:
         pruned = False
         for tableid in tqdm(sorted(table_dictionary, key=lambda k: len(table_dictionary[k]), reverse=True)):
             set_of_rowids = set()
-            hitting_posting_list_concatinated = table_dictionary[tableid]
+            hitting_posting_list_concatenated = table_dictionary[tableid]
             if active_pruning and len(top_joinable_tables) >= self.top_k and top_joinable_tables[0][0] >= len(
-                    hitting_posting_list_concatinated):
+                    hitting_posting_list_concatenated):
                 pruned = True
             if active_pruning and (
-                    (self.is_min_join_ratio_absolute and len(hitting_posting_list_concatinated) < self.min_join_ratio)
-                    or (not self.is_min_join_ratio_absolute and len(hitting_posting_list_concatinated) < round(
+                    (self.is_min_join_ratio_absolute and len(hitting_posting_list_concatenated) < self.min_join_ratio)
+                    or (not self.is_min_join_ratio_absolute and len(hitting_posting_list_concatenated) < round(
                     self.min_join_ratio * self.input_size))):
                 pruned = True
 
             already_checked_hits = 0
-            for hit in sorted(hitting_posting_list_concatinated):
+            for hit in sorted(hitting_posting_list_concatenated):
                 if active_pruning and len(top_joinable_tables) >= self.top_k and (
-                        (len(hitting_posting_list_concatinated) - already_checked_hits + len(set_of_rowids)) <
+                        (len(hitting_posting_list_concatenated) - already_checked_hits + len(set_of_rowids)) <
                         top_joinable_tables[0][0]):
                     break
                 tablerowid = hit.split(';')[0]
@@ -857,7 +857,7 @@ class MATETableExtraction:
         top_joinable_tables = []  # each item includes: Tableid, joinable_rows
         heapify(top_joinable_tables)
 
-        table_row = self.dbh.get_concatinated_posting_list(self.dataset_name, self.query_columns[0],
+        table_row = self.dbh.get_concatenated_posting_list(self.dataset_name, self.query_columns[0],
                                                                self.input_data[self.query_columns[0]])
 
         table_dictionary = {}
@@ -879,20 +879,20 @@ class MATETableExtraction:
         pruned = False
         for tableid in tqdm(sorted(table_dictionary, key=lambda k: len(table_dictionary[k]), reverse=True)):
             set_of_rowids = set()
-            hitting_posting_list_concatinated = table_dictionary[tableid]
+            hitting_posting_list_concatenated = table_dictionary[tableid]
             if active_pruning and len(top_joinable_tables) >= self.top_k and top_joinable_tables[0][0] >= len(
-                    hitting_posting_list_concatinated):
+                    hitting_posting_list_concatenated):
                 pruned = True
             if active_pruning and (
-                    (self.is_min_join_ratio_absolute and len(hitting_posting_list_concatinated) < self.min_join_ratio)
-                    or (not self.is_min_join_ratio_absolute and len(hitting_posting_list_concatinated) < round(
+                    (self.is_min_join_ratio_absolute and len(hitting_posting_list_concatenated) < self.min_join_ratio)
+                    or (not self.is_min_join_ratio_absolute and len(hitting_posting_list_concatenated) < round(
                     self.min_join_ratio * self.input_size))):
                 pruned = True
 
             already_checked_hits = 0
-            for hit in sorted(hitting_posting_list_concatinated):
+            for hit in sorted(hitting_posting_list_concatenated):
                 if active_pruning and len(top_joinable_tables) >= self.top_k and (
-                        (len(hitting_posting_list_concatinated) - already_checked_hits + len(set_of_rowids)) <
+                        (len(hitting_posting_list_concatenated) - already_checked_hits + len(set_of_rowids)) <
                         top_joinable_tables[0][0]):
                     break
                 tablerowid = hit.split(';')[0]
