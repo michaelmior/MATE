@@ -30,7 +30,7 @@ jobs:
           cache: 'pipenv'
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-      - run: pip install 'setuptools<58'
-      - run: pipenv install --system --dev
+      - run: pipenv install 'setuptools<58'
+      - run: pipenv install --dev
       - run: pipenv run isort --check src/**/*.py
       - run: pipenv run black --check src/**/*.py
