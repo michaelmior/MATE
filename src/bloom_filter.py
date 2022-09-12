@@ -1,7 +1,8 @@
 import math
+from typing import Hashable
+
 import mmh3
 from bitarray import bitarray
-from typing import Hashable
 
 
 class BloomFilter(object):

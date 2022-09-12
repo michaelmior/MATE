@@ -1,8 +1,10 @@
+import os.path
 from typing import List
+
 import pandas as pd
 import vertica_python
+
 from base import *
-import os.path
 
 
 class DBHandler:

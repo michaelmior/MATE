@@ -1,7 +1,8 @@
-import vertica_python
-import numpy as np
 import math
 from collections import Counter
+
+import numpy as np
+import vertica_python
 
 
 def XASH(token: str, hash_size: int = 128) -> int:
