@@ -11,6 +11,7 @@ from collections import Counter
 import math
 import numpy as np
 from typing import List, Dict, Any, Tuple
+import os
 
 
 class MATETableExtraction:
@@ -970,5 +971,5 @@ if __name__ == '__main__':
     top_k = 10
     one_bits = 5
     bits = 128
-    MATETableExtraction('movie', '../datasets/movie.csv', ['director_name', 'movie_title'], top_k, 'main_tokenized',
+    MATETableExtraction('movie', os.path.join(os.path.dirname(__file__), '..', 'datasets', 'movie.csv'), ['director_name', 'movie_title'], top_k, 'main_tokenized',
                         one_bits, f'MATE_datasets_k_bits_ones_{top_k}_{bits}_{one_bits}').MATE(bits)

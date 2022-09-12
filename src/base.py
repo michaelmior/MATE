@@ -3,6 +3,7 @@ import pandas as pd
 import heapq
 import numpy as np
 from typing import List, Dict
+import os
 
 
 def get_cleaned_text(text: str) -> str:
@@ -56,9 +57,9 @@ def get_dataset(file_name: str, use_default_path: bool = True) -> pd.DataFrame:
     pd.DataFrame
         Dataset.
     """
-    base_url = '../datasets/'
+    base_url = os.path.join(os.path.dirname(__file__), '..', 'datasets')
     if use_default_path:
-        file = pd.read_csv(base_url+file_name+'.csv', sep=',')
+        file = pd.read_csv(os.path.join(base_url, file_name + '.csv'), sep=',')
     else:
         file = pd.read_csv(file_name+'.csv', sep=',')
     # file = file.replace("'", "''")
@@ -81,9 +82,9 @@ def get_dataset_with_path(file_name: str, includes_path: bool = True) -> None:
     pd.DataFrame
         Dataset.
     """
-    base_url = '../datasets/'
+    base_url = os.path.join(os.path.dirname(__file__), '..', 'datasets')
     if not includes_path:
-        file = pd.read_csv(base_url + file_name, sep=',')
+        file = pd.read_csv(os.path.join(base_url, file_name), sep=',')
     else:
         file = pd.read_csv(file_name, sep=',')
     # file = file.replace("'", "''")

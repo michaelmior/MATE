@@ -72,7 +72,7 @@ First we create a ```MATETableExtraction``` instance as follows:
 top_k = 10
 one_bits = 5
 bits = 128
-mate = MATETableExtraction('movie', '../datasets/movie.csv', ['director_name', 'movie_title'], top_k, 'main_tokenized',
+mate = MATETableExtraction('movie', 'datasets/movie.csv', ['director_name', 'movie_title'], top_k, 'main_tokenized',
                     one_bits, f'MATE_datasets_k_bits_ones_{top_k}_{bits}_{one_bits}')
 ```
 
@@ -90,42 +90,42 @@ top_k = 10
 one_bits = 6
 bits = 128
 
-for file_path in glob.glob('../datasets/webtable/10/sampled_file/*.csv'):
+for file_path in glob.glob('datasets/webtable/10/sampled_file/*.csv'):
     file_name = file_path.split('/')[-1].split('.')[0]
     tbl = df.read_csv(file_path, index_col=False)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', one_bits, 'MATE_WT10').MATE(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'SCR_WT10').SCR(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'MCR_WT10').MCR(bits, True)
 
-for file_path in glob.glob('../datasets/webtable/100/sampled_file/*.csv'):
+for file_path in glob.glob('datasets/webtable/100/sampled_file/*.csv'):
     file_name = file_path.split('/')[-1].split('.')[0]
     tbl = df.read_csv(file_path, index_col=False)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', one_bits, 'MATE_WT100').MATE(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'SCR_WT100').SCR(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'MCR_WT100').MCR(bits, True)
 
-for file_path in glob.glob('../datasets/webtable/1000/sampled_file/*.csv'):
+for file_path in glob.glob('datasets/webtable/1000/sampled_file/*.csv'):
     file_name = file_path.split('/')[-1].split('.')[0]
     tbl = df.read_csv(file_path, index_col=False)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', one_bits, 'MATE_WT1000').MATE(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'SCR_WT1000').SCR(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'MCR_WT1000').MCR(bits, True)
 
-for file_path in glob.glob('../datasets/opendata/100/sampled_file/*.csv'):
+for file_path in glob.glob('datasets/opendata/100/sampled_file/*.csv'):
     file_name = file_path.split('/')[-1].split('.')[0]
     tbl = df.read_csv(file_path, index_col=False)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', one_bits, 'MATE_OD100').MATE(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'SCR_OD100').SCR(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'MCR_OD100').MCR(bits, True)
 
-for file_path in glob.glob('../datasets/opendata/1000/sampled_file/*.csv'):
+for file_path in glob.glob('datasets/opendata/1000/sampled_file/*.csv'):
     file_name = file_path.split('/')[-1].split('.')[0]
     tbl = df.read_csv(file_path, index_col=False)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', one_bits, 'MATE_OD1000').MATE(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'SCR_OD1000').SCR(bits, True)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', 0, 'MCR_OD1000').MCR(bits, True)
 
-for file_path in glob.glob('../datasets/opendata/10000/sampled_file/*.csv'):
+for file_path in glob.glob('datasets/opendata/10000/sampled_file/*.csv'):
     file_name = file_path.split('/')[-1].split('.')[0]
     tbl = df.read_csv(file_path, index_col=False)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', one_bits, 'MATE_OD10000').MATE(bits, True)
@@ -144,7 +144,7 @@ bits = 128
 
 corpus = 'webtable' # or opendata
 corpus_query_size = '100' # [10, 100, 1000, 10000]
-for file_path in glob.glob('../datasets/{}/{}/sampled_file/*.csv'.format(corpus, corpus_query_size)):
+for file_path in glob.glob('datasets/{}/{}/sampled_file/*.csv'.format(corpus, corpus_query_size)):
     file_name = file_path.split('/')[-1].split('.')[0]
     tbl = df.read_csv(file_path, index_col=False)
     mate_table_extraction(file_name, file_path, tbl.columns.values, top_k, 'main_tokenized', one_bits, 'MATE').MATE(bits, True)
@@ -159,24 +159,24 @@ for file_path in glob.glob('../datasets/{}/{}/sampled_file/*.csv'.format(corpus,
 ```
 
 ```python
-mate_table_extraction('movie', '../datasets/movie.csv', ['director_name', 'movie_title'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('city', '../datasets/worldcitiespop_country_city_pop_non_zero.csv', ['Country', 'City'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('universities', '../datasets/national_universities_rankings.csv', ['Name', 'Location'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('pageview', '../datasets/pageviews_final_11000_multi_attr.csv', ['name', 'country'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('presidential', '../datasets/presidential_final_multi_attr_all.csv', ['State', 'County'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('airbnb', '../datasets/AB_NYC_2019.csv', ['neighbourhood_group', 'neighbourhood'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('beer', '../datasets/datasets_673_1282_beers.csv', ['name', 'style'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('airline', '../datasets/datasets_2253_3806_airlines.csv', ['Name', 'Country'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('food', '../datasets/kaggle_food.csv', ['product_name', 'brands'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('hfi_two_queries', '../datasets/kaggle_hfi.csv', ['countries', 'region'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('wine', '../datasets/kaggle_wine.csv', ['country', 'province'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('vgsales_two_queries1', '../datasets/vgsales.csv', ['Name', 'Platform'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('pollution1', '../datasets/pollution_us_2000_2016.csv', ['State', 'City'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
-mate_table_extraction('park', '../datasets/datasets_15295_20358_SF_Park_Scores.csv', ['Park', 'State'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('movie', 'datasets/movie.csv', ['director_name', 'movie_title'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('city', 'datasets/worldcitiespop_country_city_pop_non_zero.csv', ['Country', 'City'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('universities', 'datasets/national_universities_rankings.csv', ['Name', 'Location'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('pageview', 'datasets/pageviews_final_11000_multi_attr.csv', ['name', 'country'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('presidential', 'datasets/presidential_final_multi_attr_all.csv', ['State', 'County'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('airbnb', 'datasets/AB_NYC_2019.csv', ['neighbourhood_group', 'neighbourhood'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('beer', 'datasets/datasets_673_1282_beers.csv', ['name', 'style'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('airline', 'datasets/datasets_2253_3806_airlines.csv', ['Name', 'Country'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('food', 'datasets/kaggle_food.csv', ['product_name', 'brands'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('hfi_two_queries', 'datasets/kaggle_hfi.csv', ['countries', 'region'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('wine', 'datasets/kaggle_wine.csv', ['country', 'province'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('vgsales_two_queries1', 'datasets/vgsales.csv', ['Name', 'Platform'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('pollution1', 'datasets/pollution_us_2000_2016.csv', ['State', 'City'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
+mate_table_extraction('park', 'datasets/datasets_15295_20358_SF_Park_Scores.csv', ['Park', 'State'], top_k, 'main_tokenized', one_bits, 'Joinability_kaggle'.format(bits)).MATE(bits, True)
 ```
 
 ```python
-for file_path in glob.glob('../datasets/school/query/*.csv'):
+for file_path in glob.glob('datasets/school/query/*.csv'):
     file_name = file_path.split('/')[-1].split('.')[-1]
     tbl = df.read_csv(file_path, index_col=False)
     mate_table_extraction(file_name, file_path, ['Program Type', 'School Name'], top_k, 'school', one_bits, 'Joinability_school').MATE(bits, True)
@@ -190,7 +190,7 @@ Figure 5: The influence of Xash components on Precision. To run this experiment,
 top_k = 10
 bits = 128
 one_bits = 6
-for file_path in glob.glob('../datasets/webtable/100/sampled_file/*.csv'):
+for file_path in glob.glob('datasets/webtable/100/sampled_file/*.csv'):
     file_name = file_path.split('/')[-1].split('.')[0]
     if file_name not in valid_files:
         continue
@@ -209,17 +209,17 @@ Figure 6: Key size experiment.
 ```python
 for k in ['1290']:
     for i in np.arange(2, 11, 1):
-        tbl = pd.read_csv("../datasets/benchmark/{}.csv".format(k))
-        mate_table_extraction(k, "../datasets/benchmark/{}.csv".format(k),
+        tbl = pd.read_csv("datasets/benchmark/{}.csv".format(k))
+        mate_table_extraction(k, "datasets/benchmark/{}.csv".format(k),
                               list(tbl.columns.values)[:i], top_k, 'open_data_main_tokenized', 6,
                               'key_size_exp_MATE_{}'.format(k)).MATE(128, True)
-        mate_table_extraction(k, "../datasets/benchmark/{}.csv".format(k),
+        mate_table_extraction(k, "datasets/benchmark/{}.csv".format(k),
                               list(tbl.columns.values)[:i], top_k, 'open_data_main_tokenized', 3,
                               'key_size_exp_BF_{}'.format(k)).BF(128, True)
-        mate_table_extraction(k, "../datasets/benchmark/{}.csv".format(k),
+        mate_table_extraction(k, "datasets/benchmark/{}.csv".format(k),
                               list(tbl.columns.values)[:i], top_k, 'open_data_main_tokenized', 1,
                               'key_size_exp_HT_{}'.format(k)).BF(128, True)
-        mate_table_extraction(k, "../datasets/benchmark/{}.csv".format(k),
+        mate_table_extraction(k, "datasets/benchmark/{}.csv".format(k),
                               list(tbl.columns.values)[:i], top_k, 'open_data_main_tokenized', 0,
                               'key_size_exp_SCR_{}'.format(k)).SCR()
 ```
