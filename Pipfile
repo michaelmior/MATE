@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+vertica-python = "*"
+pandas = "*"
+setuptools = "==58"
+pyhash = "*"
+tqdm = "*"
+simhash = "*"
+mmh3 = "*"
+bitarray = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
